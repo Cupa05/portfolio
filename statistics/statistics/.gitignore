@@ -33,3 +33,10 @@ build/
 .vscode/
 mvnw
 mvnw.cmd
+compiler.xml
+encodeings.xml
+jarRepositories.xml
+misc.xml
+modules.xml
+statistics.iml
+vcs.xml
