@@ -1,0 +1,19 @@
+{
+  "name": "cron_to_if_set",
+  "triggers": [
+    { "id": "t1", "type": "cron", "cron": "*/1 * * * *" }
+  ],
+  "nodes": [
+    { "id": "n1", "type": "function", "config": { "code": "context.temp = Math.random(); return context;" } },
+    { "id": "n2", "type": "if", "config": { "expression": "context.temp > 0.5" } },
+    { "id": "n3", "type": "set", "config": { "fields": { "message": "High: {{context.temp}}" } } },
+    { "id": "n4", "type": "set", "config": { "fields": { "message": "Low: {{context.temp}}" } } }
+  ],
+  "connections": [
+    { "from": { "id": "t1", "port": "main" }, "to": { "id": "n1", "port": "in" } },
+    { "from": { "id": "n1", "port": "main" }, "to": { "id": "n2", "port": "in" } },
+    { "from": { "id": "n2", "port": "true" }, "to": { "id": "n3", "port": "in" } },
+    { "from": { "id": "n2", "port": "false" }, "to": { "id": "n4", "port": "in" } }
+  ],
+  "settings": { "onError": "continue" }
+}
