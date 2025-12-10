@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="001-create-person-table" author="adam.zagoni">
+        <createTable tableName="person">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="VARCHAR(20)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="VARCHAR(20)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="age" type="INT" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="002-insert-sample-person" author="adam.zagoni" >
+<!--        <preConditions onFail="MARK_RAN">-->
+<!--            <sqlCheck expectedResult="0">-->
+<!--                SELECT COUNT(*) FROM person WHERE id = 1-->
+<!--            </sqlCheck>-->
+<!--        </preConditions>-->
+
+        <insert tableName="person">
+            <column name="id" valueNumeric="1"/>
+            <column name="first_name" value="Zágoni"/>
+            <column name="last_name" value="Ádám"/>
+            <column name="age" value="20"/>
+
+        </insert>
+
+    </changeSet>
+</databaseChangeLog>
