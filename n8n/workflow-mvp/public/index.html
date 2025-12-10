@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Workflow MVP UI</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:," />
+  <meta name="color-scheme" content="dark light">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Workflow MVP</div>
+      <div class="muted">Workflows in <code>examples/</code></div>
+      <div id="workflow-list" class="list"></div>
+      <div class="sidebar-actions">
+        <input id="name" class="input" placeholder="new_workflow_name" />
+        <button id="load" class="btn">Load</button>
+        <button id="save" class="btn primary">Save</button>
+      </div>
+      <div class="spacer"></div>
+      <div class="muted foot">Server: <span id="server-url"></span></div>
+      <div class="row gap">
+        <label for="theme" class="muted">Theme</label>
+        <select id="theme" class="input">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="neon">Neon</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="toolbar">
+        <div class="file">Editing: <code id="file">—</code></div>
+        <div class="toolbar-actions">
+          <button id="format" class="btn">Format</button>
+          <button id="validate" class="btn">Validate</button>
+        </div>
+      </div>
+
+      <div class="panes">
+        <section class="pane">
+          <header class="pane-title">Workflow JSON</header>
+          <textarea id="editor" spellcheck="false"></textarea>
+        </section>
+        <section class="pane">
+          <header class="pane-title">Quick Actions</header>
+          <div class="row gap">
+            <input id="triggerId" class="input" placeholder="t1" />
+            <input id="webhookBody" class="input" placeholder='{"id":123,"total":42}' />
+            <button id="runWebhook" class="btn primary">Run Webhook</button>
+          </div>
+          <pre id="out" class="output"></pre>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
